@@ -15,7 +15,7 @@ for rows in range(len(gridArr)):
 
 def drawGrid(modX, modY):
 
-    if modX == 0 and modY == 0: #This IF statment isn't working maybe its because python is insane and doesn't like () or I crapped up somewhere
+    if modX == -1 and modY == -1: #This IF statment isn't working maybe its because python is insane and doesn't like () or I crapped up somewhere
         y = 0
         while y != 10:
             for x in range(len(gridArr)):
@@ -29,10 +29,10 @@ def drawGrid(modX, modY):
                 if modX == y and modY == x: 
                     if gridArr[modX][modY] == "x":
                         gridArr[x][y] = "o"
-                        drawGrid(0,0)
+                        drawGrid(-1,-1)
                     elif gridArr[modX][modY] == "o":
                         gridArr[x][y] = "x"
-                        drawGrid(0,0)
+                        drawGrid(-1,-1)
 
 def interGrid(): #Function interGrid is the method that allows the user to interact with the grid
     
