@@ -68,13 +68,13 @@ def interGrid(): #Function interGrid is the method that allows the user to inter
             print("Invalid answer try again")
               
 def logic():
-
-    coords = []
     
+    neighbours = []
+
     # These for loops add the coordinates of the os
     for x in range(len(gridArr)):
             for y in range(len(gridArr)):
-                if gridArr[x][y] == "o":
+                #if gridArr[x][y] == "o":
 
                     # Put all of the os in a list 
                     # Then count the amount of os
@@ -82,19 +82,74 @@ def logic():
                     # The problem arises when we have 
                     # to find dead cells with three neighbours
                     
-                    ne = gridArr[x - 1][y + 1]
+                try:
                     n = gridArr[x][y + 1]
+                    neighbours.append(n)
+                except IndexError: 
+                    n = ""
+                    neighbours.append(n)
+
+                try:
+                    ne = gridArr[x - 1][y + 1]
+                    neighbours.append(ne)
+                except IndexError: 
+                    ne = ""
+                    neighbours.append(ne)
+
+                try:
                     nw = gridArr[x + 1][y + 1]
+                    neighbours.append(nw)
+                except IndexError: 
+                    nw = ""
+                    neighbours.append(nw)
+
+                try:
                     w = gridArr[x - 1][y]
+                    neighbours.append(w)
+                except IndexError: 
+                    w = ""
+                    neighbours.append(w)
+
+                try:
                     e = gridArr[x + 1][y]
+                    neighbours.append(e)
+                except IndexError: 
+                    e = ""
+                    neighbours.append(e)
+
+                try:
                     se = gridArr[x - 1][y - 1]
+                    neighbours.append(se)
+                except IndexError: 
+                    se = ""
+                    neighbours.append(se)
+
+                try:
                     s = gridArr[x][y - 1]
+                    neighbours.append(s)
+                except IndexError: 
+                    s = ""
+                    neighbours.append(s)
+
+                try:
                     sw = gridArr[x + 1][y - 1]
+                    neighbours.append(sw)
+                except IndexError: 
+                    sw = ""
+                    neighbours.append(sw)
 
-    
-    
+                c = gridArr[x][y]
+                neighbours.append(c)
 
+                count = 0
+                o = 0
+                #for i in neighbours:
+                    #if c < 9 :
+                        
 
+    print(neighbours)
+
+                    
                     
 
 interGrid()
