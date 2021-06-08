@@ -137,7 +137,7 @@ def logic():
                     se = " "
                     neighbours.append(se)
 
-                c = gridArr[x][y]
+               c = gridArr[x][y]
                 neighbours.append(c)
 
     for i in range(len(neighbours)):
@@ -155,7 +155,6 @@ def logic():
 
 
     del currentCells[0]
-    #print(currentCells)
 
     for i in range(len(currentCells)):
 
@@ -199,17 +198,6 @@ def logic():
     else:
         logic() 
 
-    #gridArr = currentCells[:]
-    #print(neighbours)
-   #print(gridArr)
-    print("\n\n\n")
-   # print(cellsNeighbours)
-    print("\n\n")
-    #drawGrid(-2,-2)
-            
-
-
-    
-
 interGrid()
 
+ 
