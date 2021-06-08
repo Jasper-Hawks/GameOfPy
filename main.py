@@ -1,3 +1,5 @@
+import time
+
 # Conways Game of Life
 # Rules:
 # Any live cell with fewer than two live neighbours dies, as if by underpopulation.
@@ -6,7 +8,9 @@
 # Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
 #Instantiates Grid Array
+global gridArr
 gridArr = [list(range(10)) for y in range (10)] # Instantiate a 2D array 
+currentCells = []
 
 for rows in range(len(gridArr)):
     for cols in range(len(gridArr)):
@@ -23,6 +27,7 @@ def drawGrid(modX, modY):
                     print(gridArr[x][y], end=" ")
                 print("\n")
             y += 1
+
     else:
         for x in range(len(gridArr)):
             for y in range(len(gridArr)):
@@ -135,16 +140,12 @@ def logic():
                 c = gridArr[x][y]
                 neighbours.append(c)
 
-    currentCells = []
     for i in range(len(neighbours)):
 
         # Differentiate between an alive and a dead cell
         # Then it should be a case of determing how many os there are
         # And changing cells accordingly
-
-        # Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-        # Any live cell with two or three live neighbours lives on to the next generation.
-        # Any live cell with more than three live neighbours dies, as if by overpopulation.
+        
         # Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
         try:
@@ -152,9 +153,63 @@ def logic():
         except IndexError:
             break         
 
+
     del currentCells[0]
+    #print(currentCells)
+
+    for i in range(len(currentCells)):
+
+        cellsNeighbours = neighbours[i*9:((i+1)*9)]
+        cellsNeighbours = cellsNeighbours[:-1]
+        if currentCells[i] == "o":
+
+            # Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+            if cellsNeighbours.count("o") < 2:
+
+                currentCells[i] = "x"
+
+            # Any live cell with two or three live neighbours lives on to the next generation.
+            elif cellsNeighbours.count("o") == 2 or cellsNeighbours.count("o") == 3:
+
+                currentCells[i] = "o"
+
+            # Any live cell with more than three live neighbours dies, as if by overpopulation.
+            elif cellsNeighbours.count("o") > 3:
+
+                currentCells[i] = "x"
+
+        else:
+
+            if cellsNeighbours.count("o") == 3:
+
+                currentCells[i] = "o" 
+
+    for x in range(len(currentCells)):
+        print(currentCells[x], end=" ")
+        if (x + 1) % 10 == 0:
+            print("\n")
+    print("\n\n")
+    time.sleep(1)
     
-                    
+    if(currentCells.count("x") == 100):
+
+        print("The Game of Py is over")
+        exit()
+
+    else:
+        logic() 
+
+    #gridArr = currentCells[:]
+    #print(neighbours)
+   #print(gridArr)
+    print("\n\n\n")
+   # print(cellsNeighbours)
+    print("\n\n")
+    #drawGrid(-2,-2)
+            
+
+
+    
 
 interGrid()
 
